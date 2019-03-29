@@ -10,7 +10,10 @@ local Keys = {
   ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
 }
 
-ESX    = nil
+ESX = nil
+
+local PlayerData              = {}
+local BlipList                = {}
 local HasAlreadyEnteredMarker = false
 local LastZone                = nil
 local CurrentAction           = nil
@@ -24,9 +27,30 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 	
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	ESX.PlayerData = ESX.GetPlayerData()
+	refreshBlips()
+	
 	TriggerServerEvent('esx_licenseshop:ServerLoadLicenses')
 end)
 
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(xPlayer)
+	ESX.PlayerData = xPlayer
+	refreshBlips()
+end)
+
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	ESX.PlayerData.job = job
+	deleteBlips()
+	refreshBlips()
+end)
+
+-- Open License Shop
 function OpenLicenseShop()
 	local ownedLicenses = {}
 	
@@ -72,8 +96,7 @@ function OpenLicenseShop()
 	
 	ESX.UI.Menu.CloseAll()
 
-	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'license_shop_actions',
-	{
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'license_shop_actions', {
 		title    = _U('buy_license'),
 		elements = elements,
 		align    = 'top-left'
@@ -125,22 +148,28 @@ AddEventHandler('esx_licenseshop:loadLicenses', function(licenses)
 	Licenses = licenses
 end)
 
--- Display markers
+-- Draw Markers
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 
 		local coords = GetEntityCoords(PlayerPedId())
+		local canSleep = true
 
 		for k,v in pairs(Config.Zones) do
 			if(v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
+				canSleep = false
 				DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
 			end
+		end
+		
+		if canSleep then
+			Citizen.Wait(500)
 		end
 	end
 end)
 
--- Enter / Exit marker events
+-- Activate Menu when in Markers
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(200)
@@ -166,6 +195,10 @@ Citizen.CreateThread(function()
 			HasAlreadyEnteredMarker = false
 			TriggerEvent('esx_licenseshop:hasExitedMarker', LastZone)
 		end
+		
+		if not isInMarker then
+			Citizen.Wait(500)
+		end
 	end
 end)
 
@@ -186,6 +219,74 @@ Citizen.CreateThread(function()
 			end
 		else
 			Citizen.Wait(500)
+		end
+	end
+end)
+
+-- Blips
+function deleteBlips()
+	if BlipList[1] ~= nil then
+		for i=1, #BlipList, 1 do
+			RemoveBlip(BlipList[i])
+			BlipList[i] = nil
+		end
+	end
+end
+
+function refreshBlips()
+	if Config.EnableBlips then
+		if Config.EnableUnemployedOnly then
+			if ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'unemployed' or ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'gang' then
+				for k,v in pairs(Config.Locations) do
+					local blip = AddBlipForCoord(v.x, v.y)
+
+					SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
+					SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
+					SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
+					SetBlipColour (blip, Config.BlipLicenseShop.Color)
+					SetBlipAsShortRange(blip, true)
+
+					BeginTextCommandSetBlipName("STRING")
+					AddTextComponentString(_U('blip_license_shop'))
+					EndTextCommandSetBlipName(blip)
+					table.insert(BlipList, blip)
+				end
+			end
+		else
+			for k,v in pairs(Config.Locations) do
+				local blip = AddBlipForCoord(v.x, v.y)
+
+				SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
+				SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
+				SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
+				SetBlipColour (blip, Config.BlipLicenseShop.Color)
+				SetBlipAsShortRange(blip, true)
+
+				BeginTextCommandSetBlipName("STRING")
+				AddTextComponentString(_U('blip_license_shop'))
+				EndTextCommandSetBlipName(blip)
+				table.insert(BlipList, blip)
+			end
+		end
+	end
+end
+
+-- Create Ped
+Citizen.CreateThread(function()
+    RequestModel(GetHashKey("a_m_y_business_03"))
+	
+    while not HasModelLoaded(GetHashKey("a_m_y_business_03")) do
+        Wait(1)
+    end
+	
+	if Config.EnablePeds then
+		for _, item in pairs(Config.Locations) do
+			local npc = CreatePed(4, 0xA1435105, item.x, item.y, item.z, item.heading, false, true)
+			
+			SetEntityHeading(npc, item.heading)
+			FreezeEntityPosition(npc, true)
+			SetEntityInvincible(npc, true)
+			SetBlockingOfNonTemporaryEvents(npc, true)
 		end
 	end
 end)
