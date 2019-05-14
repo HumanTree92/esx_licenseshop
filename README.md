@@ -17,6 +17,9 @@ Current Licenses: Drivers License, Motorcycles License, Commercial License, Airc
 3) Place `esx_licenseshop` in your ESX Directory
 4) Add `start esx_licenseshop` to your server.cfg
 
+# Known Bugs
+* If a new player Gets their DMV License you will have to restart the License Shop or have the Player Re-Log. This can be fixed easily by adding a Resource Restarter to the esx_dmvschool when a player passes their Test. (This will not be added as this is a messy way of handling it.)
+
 # Other:
 If you like this please check out some of my other stuff like
 * [esx_advancedgarage](https://github.com/HumanTree92/esx_advancedgarage)
