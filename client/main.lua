@@ -212,6 +212,7 @@ Citizen.CreateThread(function()
 
 			if IsControlJustReleased(0, Keys['E']) then
 				if CurrentAction == 'license_menu' then
+					TriggerServerEvent('esx_licenseshop:ServerLoadLicenses')
 					OpenLicenseShop()
 				end
 
