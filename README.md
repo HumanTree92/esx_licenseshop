@@ -6,10 +6,13 @@ This is just a simple Code that i put together to sell licenses next to the DMV 
 Current Licenses: Drivers License, Motorcycles License, Commercial License, Aircraft License, Boat License, Weapons License, & Weed License.
 
 # Requirements:
-* [esx_dmvschool](https://github.com/ESX-Org/esx_dmvschool)
-* [esx_drugs](https://github.com/ESX-Org/esx_drugs)
-* [esx_aircraftshop](https://github.com/HumanTree92/esx_aircraftshop)
-* [esx_boatshop](https://github.com/HumanTree92/esx_boatshop)
+* Required:
+  * [esx_dmvschool](https://github.com/ESX-Org/esx_dmvschool)
+  * [esx_drugs](https://github.com/ESX-Org/esx_drugs)
+  * [esx_weaponshop](https://github.com/ESX-Org/esx_weaponshop)
+* Optional:
+  * [esx_aircraftshop](https://github.com/HumanTree92/esx_aircraftshop)
+  * [esx_boatshop](https://github.com/HumanTree92/esx_boatshop)
 
 # Download & Installation:
 1) Download the .zip.
@@ -52,7 +55,7 @@ If you like this please check out some of my other stuff like
 ### License
 esx_licenseshop - License Shop for ESX Servers.
 
-Copyright (C) 2011-2019 Velociti Entertainment
+Copyright (C) 2011-2020 Velociti Entertainment
 
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
 
