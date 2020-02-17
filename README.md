@@ -11,8 +11,7 @@ Current Licenses: Drivers License, Motorcycles License, Commercial License, Airc
   * [esx_drugs](https://github.com/ESX-Org/esx_drugs)
   * [esx_weaponshop](https://github.com/ESX-Org/esx_weaponshop)
 * Optional:
-  * [esx_aircraftshop](https://github.com/HumanTree92/esx_aircraftshop)
-  * [esx_boatshop](https://github.com/HumanTree92/esx_boatshop)
+  * [esx_advancedvehicleshop](https://github.com/HumanTree92/esx_advancedvehicleshop)
 
 # Download & Installation:
 1) Download the .zip.
@@ -23,19 +22,24 @@ Current Licenses: Drivers License, Motorcycles License, Commercial License, Airc
 # Known Bugs
 * If a new player Gets their DMV License you will have to restart the License Shop or have the Player Re-Log. This can be fixed easily by adding a Resource Restarter to the esx_dmvschool when a player passes their Test. (This will not be added as this is a messy way of handling it.)
 
-# Other:
+# Other Scripts:
 If you like this please check out some of my other stuff like
 * [esx_advancedgarage](https://github.com/HumanTree92/esx_advancedgarage)
+* [esx_advancedvehicleshop](https://github.com/HumanTree92/esx_advancedvehicleshop)
+* [esx_advancedhospital](https://github.com/HumanTree92/esx_advancedhospital)
+* [esx_extraitems](https://github.com/HumanTree92/esx_extraitems)
+* [esx_licenseshop](https://github.com/HumanTree92/esx_licenseshop)
+* [esx_vehiclespawner](https://github.com/HumanTree92/esx_vehiclespawner)
+* [FiveM_CustomMapAddons](https://github.com/HumanTree92/FiveM_CustomMapAddons)
+
+# Archived Scripts:
+Scripts that will no longer be Maintained.
 * [esx_aircraftshop](https://github.com/HumanTree92/esx_aircraftshop)
 * [esx_boatshop](https://github.com/HumanTree92/esx_boatshop)
 * [esx_truckshop](https://github.com/HumanTree92/esx_truckshop)
-* [esx_extraitems](https://github.com/HumanTree92/esx_extraitems)
-* [esx_licenseshop](https://github.com/HumanTree92/esx_licenseshop)
 * [esx_plasticsurgery](https://github.com/HumanTree92/esx_plasticsurgery)
-* [esx_vehiclespawner](https://github.com/HumanTree92/esx_vehiclespawner)
 * [esx_hospital](https://github.com/HumanTree92/esx_hospital)
 * [esx_panicbutton](https://github.com/HumanTree92/esx_panicbutton)
-* [FiveM_CustomMapAddons](https://github.com/HumanTree92/FiveM_CustomMapAddons)
 
 # Visit Velociti Entertainment:
 * TS3 - ts3.velocitientertainment.com
