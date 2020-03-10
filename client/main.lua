@@ -1,13 +1,7 @@
+local CurrentActionData, Licenses = {}, {}
+local HasAlreadyEnteredMarker, IsInMainMenu = false, false
+local LastZone, CurrentAction, CurrentActionMsg
 ESX = nil
-
-local PlayerData              = {}
-local BlipList                = {}
-local HasAlreadyEnteredMarker = false
-local LastZone                = nil
-local CurrentAction           = nil
-local CurrentActionMsg        = ''
-local CurrentActionData       = {}
-local Licenses                = {}
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -20,26 +14,22 @@ Citizen.CreateThread(function()
 	end
 
 	ESX.PlayerData = ESX.GetPlayerData()
-	refreshBlips()
-
 	TriggerServerEvent('esx_licenseshop:ServerLoadLicenses')
 end)
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
 	ESX.PlayerData = xPlayer
-	refreshBlips()
 end)
 
-RegisterNetEvent('esx:setJob')
-AddEventHandler('esx:setJob', function(job)
-	ESX.PlayerData.job = job
-	deleteBlips()
-	refreshBlips()
+RegisterNetEvent('esx_licenseshop:loadLicenses')
+AddEventHandler('esx_licenseshop:loadLicenses', function(licenses)
+	Licenses = licenses
 end)
 
 -- Open License Shop
 function OpenLicenseShop()
+	IsInMainMenu = true
 	local ownedLicenses = {}
 
 	for i=1, #Licenses, 1 do
@@ -53,12 +43,14 @@ function OpenLicenseShop()
 	end
 
 	if ownedLicenses['dmv'] then
-		if not ownedLicenses['aircraft'] then
-			table.insert(elements, {label = _U('license_aircraft') .. ' <span style="color: green;">$' .. Config.AircraftLicensePrice .. '</span>', value = 'buy_license_aircraft'})
-		end
+		if Config.AdvancedVehicleShop then
+			if not ownedLicenses['aircraft'] then
+				table.insert(elements, {label = _U('license_aircraft') .. ' <span style="color: green;">$' .. Config.AircraftLicensePrice .. '</span>', value = 'buy_license_aircraft'})
+			end
 
-		if not ownedLicenses['boating'] then
-			table.insert(elements, {label = _U('license_boating') .. ' <span style="color: green;">$' .. Config.BoatingLicensePrice .. '</span>', value = 'buy_license_boating'})
+			if not ownedLicenses['boating'] then
+				table.insert(elements, {label = _U('license_boating') .. ' <span style="color: green;">$' .. Config.BoatingLicensePrice .. '</span>', value = 'buy_license_boating'})
+			end
 		end
 
 		if not ownedLicenses['drive_truck'] then
@@ -86,32 +78,40 @@ function OpenLicenseShop()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'license_shop_actions', {
 		title    = _U('buy_license'),
-		elements = elements,
-		align    = 'top-left'
+		align    = 'top-left',
+		elements = elements
 	}, function(data, menu)
 		if data.current.value == 'buy_license_aircraft' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseAircraft')
+			IsInMainMenu = false
 			menu.close()
 		elseif data.current.value == 'buy_license_boating' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseBoating')
+			IsInMainMenu = false
 			menu.close()
 		elseif data.current.value == 'buy_license_commercial' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseCommercial')
+			IsInMainMenu = false
 			menu.close()
 		elseif data.current.value == 'buy_license_drivers' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseDrivers')
+			IsInMainMenu = false
 			menu.close()
 		elseif data.current.value == 'buy_license_motorcycle' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseMotorcyle')
+			IsInMainMenu = false
 			menu.close()
 		elseif data.current.value == 'buy_license_weapon' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseWeapon')
+			IsInMainMenu = false
 			menu.close()
 		elseif data.current.value == 'buy_license_weed' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseWeed')
+			IsInMainMenu = false
 			menu.close()
 		end
 	end, function(data, menu)
+		IsInMainMenu = false
 		menu.close()
 
 		CurrentAction     = 'license_menu'
@@ -121,61 +121,94 @@ function OpenLicenseShop()
 end
 
 AddEventHandler('esx_licenseshop:hasEnteredMarker', function(zone)
-	CurrentAction     = 'license_menu'
-	CurrentActionMsg  = _U('press_access')
-	CurrentActionData = {}
+	if zone == 'LicenseShop1' then
+		CurrentAction     = 'license_menu'
+		CurrentActionMsg  = _U('press_access')
+		CurrentActionData = {}
+	end
 end)
 
+-- Exited Marker
 AddEventHandler('esx_licenseshop:hasExitedMarker', function(zone)
-	ESX.UI.Menu.CloseAll()
+	if not IsInMainMenu then
+		ESX.UI.Menu.CloseAll()
+	end
+
 	CurrentAction = nil
 end)
 
-RegisterNetEvent('esx_licenseshop:loadLicenses')
-AddEventHandler('esx_licenseshop:loadLicenses', function(licenses)
-	Licenses = licenses
-end)
-
--- Draw Markers
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-
-		local coords = GetEntityCoords(PlayerPedId())
-		local canSleep = true
-
-		for k,v in pairs(Config.Zones) do
-			if(v.Type ~= -1 and GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < Config.DrawDistance) then
-				canSleep = false
-				DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, false, true, 2, false, false, false, false)
-			end
-		end
-
-		if canSleep then
-			Citizen.Wait(500)
+-- Resource Stop
+AddEventHandler('onResourceStop', function(resource)
+	if resource == GetCurrentResourceName() then
+		if IsInMainMenu then
+			ESX.UI.Menu.CloseAll()
 		end
 	end
 end)
 
--- Activate Menu when in Markers
+-- Blips
 Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(200)
+	for k,v in pairs(Config.Zones) do
+		local blip = AddBlipForCoord(v.Coords)
 
-		local coords      = GetEntityCoords(PlayerPedId())
-		local isInMarker  = false
-		local currentZone = nil
+		SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
+		SetBlipColour (blip, Config.BlipLicenseShop.Color)
+		SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
+		SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
+		SetBlipAsShortRange(blip, true)
+
+		BeginTextCommandSetBlipName('STRING')
+		AddTextComponentSubstringPlayerName(_U('blip_license_shop'))
+		EndTextCommandSetBlipName(blip)
+	end
+end)
+
+-- Create Ped
+Citizen.CreateThread(function()
+    if Config.EnablePeds then
+		RequestModel(GetHashKey("a_m_y_business_03"))
+
+		while not HasModelLoaded(GetHashKey("a_m_y_business_03")) do
+			Wait(1)
+		end
 
 		for k,v in pairs(Config.Zones) do
-			if GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < v.Size.x then
-				isInMarker  = true
-				currentZone = k
+			local npc = CreatePed(4, 0xA1435105, v.Pos, v.Heading, false, true)
+
+			SetEntityHeading(npc, v.Heading)
+			FreezeEntityPosition(npc, true)
+			SetEntityInvincible(npc, true)
+			SetBlockingOfNonTemporaryEvents(npc, true)
+		end
+	end
+end)
+
+-- Enter / Exit marker events & Draw Markers
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		local playerCoords = GetEntityCoords(PlayerPedId())
+		local isInMarker, letSleep, currentZone = false, true
+
+		for k,v in pairs(Config.Zones) do
+			local distance = #(playerCoords - v.Pos)
+
+			if distance < Config.DrawDistance then
+				letSleep = false
+
+				if Config.MarkerType ~= -1 then
+					DrawMarker(Config.MarkerType, v.Pos, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.MarkerSize.x, Config.MarkerSize.y, Config.MarkerSize.z, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, false, nil, nil, false)
+				end
+
+				if distance < Config.MarkerSize.x then
+					isInMarker, currentZone = true, k
+				end
 			end
 		end
 
 		if (isInMarker and not HasAlreadyEnteredMarker) or (isInMarker and LastZone ~= currentZone) then
-			HasAlreadyEnteredMarker = true
-			LastZone                = currentZone
+			HasAlreadyEnteredMarker, LastZone = true, currentZone
+			LastZone = currentZone
 			TriggerEvent('esx_licenseshop:hasEnteredMarker', currentZone)
 		end
 
@@ -184,7 +217,7 @@ Citizen.CreateThread(function()
 			TriggerEvent('esx_licenseshop:hasExitedMarker', LastZone)
 		end
 
-		if not isInMarker then
+		if letSleep then
 			Citizen.Wait(500)
 		end
 	end
@@ -195,7 +228,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 
-		if CurrentAction ~= nil then
+		if CurrentAction then
 			ESX.ShowHelpNotification(CurrentActionMsg)
 
 			if IsControlJustReleased(0, 38) then
@@ -208,74 +241,6 @@ Citizen.CreateThread(function()
 			end
 		else
 			Citizen.Wait(500)
-		end
-	end
-end)
-
--- Blips
-function deleteBlips()
-	if BlipList[1] ~= nil then
-		for i=1, #BlipList, 1 do
-			RemoveBlip(BlipList[i])
-			BlipList[i] = nil
-		end
-	end
-end
-
-function refreshBlips()
-	if Config.EnableBlips then
-		if Config.EnableUnemployedOnly then
-			if ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'unemployed' or ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'gang' then
-				for k,v in pairs(Config.Locations) do
-					local blip = AddBlipForCoord(v.x, v.y)
-
-					SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
-					SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
-					SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
-					SetBlipColour (blip, Config.BlipLicenseShop.Color)
-					SetBlipAsShortRange(blip, true)
-
-					BeginTextCommandSetBlipName("STRING")
-					AddTextComponentString(_U('blip_license_shop'))
-					EndTextCommandSetBlipName(blip)
-					table.insert(BlipList, blip)
-				end
-			end
-		else
-			for k,v in pairs(Config.Locations) do
-				local blip = AddBlipForCoord(v.x, v.y)
-
-				SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
-				SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
-				SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
-				SetBlipColour (blip, Config.BlipLicenseShop.Color)
-				SetBlipAsShortRange(blip, true)
-
-				BeginTextCommandSetBlipName("STRING")
-				AddTextComponentString(_U('blip_license_shop'))
-				EndTextCommandSetBlipName(blip)
-				table.insert(BlipList, blip)
-			end
-		end
-	end
-end
-
--- Create Ped
-Citizen.CreateThread(function()
-    RequestModel(GetHashKey("a_m_y_business_03"))
-
-    while not HasModelLoaded(GetHashKey("a_m_y_business_03")) do
-        Wait(1)
-    end
-
-	if Config.EnablePeds then
-		for _, item in pairs(Config.Locations) do
-			local npc = CreatePed(4, 0xA1435105, item.x, item.y, item.z, item.heading, false, true)
-
-			SetEntityHeading(npc, item.heading)
-			FreezeEntityPosition(npc, true)
-			SetEntityInvincible(npc, true)
-			SetBlockingOfNonTemporaryEvents(npc, true)
 		end
 	end
 end)
