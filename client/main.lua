@@ -120,6 +120,7 @@ function OpenLicenseShop()
 	end)
 end
 
+-- Entered Marker
 AddEventHandler('esx_licenseshop:hasEnteredMarker', function(zone)
 	if zone == 'LicenseShop1' then
 		CurrentAction     = 'license_menu'
@@ -149,7 +150,7 @@ end)
 -- Blips
 Citizen.CreateThread(function()
 	for k,v in pairs(Config.Zones) do
-		local blip = AddBlipForCoord(v.Coords)
+		local blip = AddBlipForCoord(v.Pos)
 
 		SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
 		SetBlipColour (blip, Config.BlipLicenseShop.Color)
@@ -196,11 +197,11 @@ Citizen.CreateThread(function()
 			if distance < Config.DrawDistance then
 				letSleep = false
 
-				if Config.MarkerType ~= -1 then
-					DrawMarker(Config.MarkerType, v.Pos, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.MarkerSize.x, Config.MarkerSize.y, Config.MarkerSize.z, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, false, nil, nil, false)
+				if Config.MarkerInfo.Type ~= -1 then
+					DrawMarker(Config.MarkerInfo.Type, v.Pos, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.MarkerInfo.x, Config.MarkerInfo.y, Config.MarkerInfo.z, Config.MarkerInfo.r, Config.MarkerInfo.g, Config.MarkerInfo.b, 100, false, true, 2, false, nil, nil, false)
 				end
 
-				if distance < Config.MarkerSize.x then
+				if distance < Config.MarkerInfo.x then
 					isInMarker, currentZone = true, k
 				end
 			end
@@ -208,7 +209,6 @@ Citizen.CreateThread(function()
 
 		if (isInMarker and not HasAlreadyEnteredMarker) or (isInMarker and LastZone ~= currentZone) then
 			HasAlreadyEnteredMarker, LastZone = true, currentZone
-			LastZone = currentZone
 			TriggerEvent('esx_licenseshop:hasEnteredMarker', currentZone)
 		end
 
