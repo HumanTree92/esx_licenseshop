@@ -1,9 +1,10 @@
 # About esx_licenseshop:
-License Shop based on ESX Servers
+License Shop for ESX
 
 This is just a simple Code that i put together to sell licenses next to the DMV School. You must have a Drivers Permit in order to buy licenses.
 
-This currently is setup for: esx_advancedvehicleshop, esx_advancedweaponshop, esx_dmvschool, esx_drugs, esx_vehicleshop, & esx_weaponshop.
+# Helpfull Info:
+* This currently is setup for: esx_advancedvehicleshop, esx_advancedweaponshop, esx_dmvschool, esx_drugs, esx_vehicleshop, & esx_weaponshop.
 
 # Requirements:
 * Required:
@@ -22,8 +23,8 @@ This currently is setup for: esx_advancedvehicleshop, esx_advancedweaponshop, es
 3) Place `esx_licenseshop` in your ESX Directory
 4) Add `start esx_licenseshop` to your server.cfg
 
-# Known Bugs
-* If a new player Gets their DMV License you will have to restart the License Shop or have the Player Re-Log. This can be fixed easily by adding a Resource Restarter to the esx_dmvschool when a player passes their Test. (This will not be added as this is a messy way of handling it.)
+# Known Bugs:
+* If a new player gets their DMV License you will have to restart the License Shop or have the Player Re-Log. This can be fixed easily by adding a Resource Restarter to the esx_dmvschool when a player passes their Test. (This will not be added as this is a messy way of handling it.)
 
 # Other Scripts:
 If you like this please check out some of my other stuff like
@@ -62,7 +63,7 @@ Scripts that will no longer be Maintained.
 
 # Legal
 ### License
-esx_licenseshop - License Shop for ESX Servers.
+esx_licenseshop - License Shop for ESX
 
 Copyright (C) 2011-2020 Velociti Entertainment
 
