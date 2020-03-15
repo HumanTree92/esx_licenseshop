@@ -38,39 +38,149 @@ function OpenLicenseShop()
 
 	local elements = {}
 
-	if not ownedLicenses['dmv'] then
-		table.insert(elements, {label = _U('need_dmv')})
-	end
+	if Config.RequireDMV then
+		if not ownedLicenses['dmv'] then
+			table.insert(elements, {label = _U('need_dmv')})
+		end
 
-	if ownedLicenses['dmv'] then
+		if ownedLicenses['dmv'] then
+			if Config.AdvancedVehicleShop then
+				if not ownedLicenses['aircraft'] then
+					table.insert(elements, {label = _U('license_aircraft') .. ' <span style="color: green;">$' .. Config.LicenseAircraft .. '</span>', value = 'buy_license_aircraft'})
+				end
+
+				if not ownedLicenses['boating'] then
+					table.insert(elements, {label = _U('license_boating') .. ' <span style="color: green;">$' .. Config.LicenseBoating .. '</span>', value = 'buy_license_boating'})
+				end
+			end
+
+			if Config.AdvancedWeaponShop then
+				if not ownedLicenses['weapon_melee'] then
+					table.insert(elements, {label = _U('license_melee') .. ' <span style="color: green;">$' .. Config.LicenseMelee .. '</span>', value = 'buy_license_melee'})
+				end
+
+				if not ownedLicenses['weapon_handgun'] then
+					table.insert(elements, {label = _U('license_handgun') .. ' <span style="color: green;">$' .. Config.LicenseHandgun .. '</span>', value = 'buy_license_handgun'})
+				end
+
+				if not ownedLicenses['weapon_smg'] then
+					table.insert(elements, {label = _U('license_smg') .. ' <span style="color: green;">$' .. Config.LicenseSMG .. '</span>', value = 'buy_license_smg'})
+				end
+
+				if not ownedLicenses['weapon_shotgun'] then
+					table.insert(elements, {label = _U('license_shotgun') .. ' <span style="color: green;">$' .. Config.LicenseShotgun .. '</span>', value = 'buy_license_shotgun'})
+				end
+
+				if not ownedLicenses['weapon_assault'] then
+					table.insert(elements, {label = _U('license_assault') .. ' <span style="color: green;">$' .. Config.LicenseAssault .. '</span>', value = 'buy_license_assault'})
+				end
+
+				if not ownedLicenses['weapon_lmg'] then
+					table.insert(elements, {label = _U('license_lmg') .. ' <span style="color: green;">$' .. Config.LicenseLMG .. '</span>', value = 'buy_license_lmg'})
+				end
+
+				if not ownedLicenses['weapon_sniper'] then
+					table.insert(elements, {label = _U('license_sniper') .. ' <span style="color: green;">$' .. Config.LicenseSniper .. '</span>', value = 'buy_license_sniper'})
+				end
+			end
+
+			if Config.DMVSchool then
+				if not ownedLicenses['drive_truck'] then
+					table.insert(elements, {label = _U('license_commercial') .. ' <span style="color: green;">$' .. Config.LicenseCommercial .. '</span>', value = 'buy_license_commercial'})
+				end
+
+				if not ownedLicenses['drive'] then
+					table.insert(elements, {label = _U('license_drivers') .. ' <span style="color: green;">$' .. Config.LicenseDrivers .. '</span>', value = 'buy_license_drivers'})
+				end
+
+				if not ownedLicenses['drive_bike'] then
+					table.insert(elements, {label = _U('license_motorcycle') .. ' <span style="color: green;">$' .. Config.LicenseMotocycle .. '</span>', value = 'buy_license_motorcycle'})
+				end
+			end
+
+			if Config.Drugs then
+				if not ownedLicenses['weed_processing'] then
+					table.insert(elements, {label = _U('license_weed') .. ' <span style="color: green;">$' .. Config.LicenseWeed .. '</span>', value = 'buy_license_weed'})
+				end
+			end
+
+			if Config.WeaponShop then
+				if not ownedLicenses['weapon'] then
+					table.insert(elements, {label = _U('license_weapon') .. ' <span style="color: green;">$' .. Config.LicenseWeapon .. '</span>', value = 'buy_license_weapon'})
+				end
+			end
+		end
+	else
 		if Config.AdvancedVehicleShop then
 			if not ownedLicenses['aircraft'] then
-				table.insert(elements, {label = _U('license_aircraft') .. ' <span style="color: green;">$' .. Config.AircraftLicensePrice .. '</span>', value = 'buy_license_aircraft'})
+				table.insert(elements, {label = _U('license_aircraft') .. ' <span style="color: green;">$' .. Config.LicenseAircraft .. '</span>', value = 'buy_license_aircraft'})
 			end
 
 			if not ownedLicenses['boating'] then
-				table.insert(elements, {label = _U('license_boating') .. ' <span style="color: green;">$' .. Config.BoatingLicensePrice .. '</span>', value = 'buy_license_boating'})
+				table.insert(elements, {label = _U('license_boating') .. ' <span style="color: green;">$' .. Config.LicenseBoating .. '</span>', value = 'buy_license_boating'})
 			end
 		end
 
-		if not ownedLicenses['drive_truck'] then
-			table.insert(elements, {label = _U('license_commercial') .. ' <span style="color: green;">$' .. Config.CommercialLicensePrice .. '</span>', value = 'buy_license_commercial'})
+		if Config.AdvancedWeaponShop then
+			if not ownedLicenses['weapon_melee'] then
+				table.insert(elements, {label = _U('license_melee') .. ' <span style="color: green;">$' .. Config.LicenseMelee .. '</span>', value = 'buy_license_melee'})
+			end
+
+			if not ownedLicenses['weapon_handgun'] then
+				table.insert(elements, {label = _U('license_handgun') .. ' <span style="color: green;">$' .. Config.LicenseHandgun .. '</span>', value = 'buy_license_handgun'})
+			end
+
+			if not ownedLicenses['weapon_smg'] then
+				table.insert(elements, {label = _U('license_smg') .. ' <span style="color: green;">$' .. Config.LicenseSMG .. '</span>', value = 'buy_license_smg'})
+			end
+
+			if not ownedLicenses['weapon_shotgun'] then
+				table.insert(elements, {label = _U('license_shotgun') .. ' <span style="color: green;">$' .. Config.LicenseShotgun .. '</span>', value = 'buy_license_shotgun'})
+			end
+
+			if not ownedLicenses['weapon_assault'] then
+				table.insert(elements, {label = _U('license_assault') .. ' <span style="color: green;">$' .. Config.LicenseAssault .. '</span>', value = 'buy_license_assault'})
+			end
+
+			if not ownedLicenses['weapon_lmg'] then
+				table.insert(elements, {label = _U('license_lmg') .. ' <span style="color: green;">$' .. Config.LicenseLMG .. '</span>', value = 'buy_license_lmg'})
+			end
+
+			if not ownedLicenses['weapon_sniper'] then
+				table.insert(elements, {label = _U('license_sniper') .. ' <span style="color: green;">$' .. Config.LicenseSniper .. '</span>', value = 'buy_license_sniper'})
+			end
 		end
 
-		if not ownedLicenses['drive'] then
-			table.insert(elements, {label = _U('license_drivers') .. ' <span style="color: green;">$' .. Config.DriversLicensePrice .. '</span>', value = 'buy_license_drivers'})
+		if Config.DMVSchool then
+			if Config.SellDMV then
+				if not ownedLicenses['dmv'] then
+					table.insert(elements, {label = _U('license_driversp') .. ' <span style="color: green;">$' .. Config.LicenseDriversP .. '</span>', value = 'buy_license_driversp'})
+				end
+			end
+
+			if not ownedLicenses['drive_truck'] then
+				table.insert(elements, {label = _U('license_commercial') .. ' <span style="color: green;">$' .. Config.LicenseCommercial .. '</span>', value = 'buy_license_commercial'})
+			end
+
+			if not ownedLicenses['drive'] then
+				table.insert(elements, {label = _U('license_drivers') .. ' <span style="color: green;">$' .. Config.LicenseDrivers .. '</span>', value = 'buy_license_drivers'})
+			end
+
+			if not ownedLicenses['drive_bike'] then
+				table.insert(elements, {label = _U('license_motorcycle') .. ' <span style="color: green;">$' .. Config.LicenseMotocycle .. '</span>', value = 'buy_license_motorcycle'})
+			end
 		end
 
-		if not ownedLicenses['drive_bike'] then
-			table.insert(elements, {label = _U('license_motorcycle') .. ' <span style="color: green;">$' .. Config.MotorcyleLicensePrice .. '</span>', value = 'buy_license_motorcycle'})
+		if Config.Drugs then
+			if not ownedLicenses['weed_processing'] then
+				table.insert(elements, {label = _U('license_weed') .. ' <span style="color: green;">$' .. Config.LicenseWeed .. '</span>', value = 'buy_license_weed'})
+			end
 		end
 
-		if not ownedLicenses['weapon'] then
-			table.insert(elements, {label = _U('license_weapon') .. ' <span style="color: green;">$' .. Config.WeaponLicensePrice .. '</span>', value = 'buy_license_weapon'})
-		end
-
-		if not ownedLicenses['weed_processing'] then
-			table.insert(elements, {label = _U('license_weed') .. ' <span style="color: green;">$' .. Config.WeedLicensePrice .. '</span>', value = 'buy_license_weed'})
+		if Config.WeaponShop then
+			if not ownedLicenses['weapon'] then
+				table.insert(elements, {label = _U('license_weapon') .. ' <span style="color: green;">$' .. Config.LicenseWeapon .. '</span>', value = 'buy_license_weapon'})
+			end
 		end
 	end
 
@@ -89,6 +199,34 @@ function OpenLicenseShop()
 			TriggerServerEvent('esx_licenseshop:buyLicenseBoating')
 			IsInMainMenu = false
 			menu.close()
+		elseif data.current.value == 'buy_license_melee' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseMelee')
+			IsInMainMenu = false
+			menu.close()
+		elseif data.current.value == 'buy_license_handgun' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseHandgun')
+			IsInMainMenu = false
+			menu.close()
+		elseif data.current.value == 'buy_license_smg' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseSMG')
+			IsInMainMenu = false
+			menu.close()
+		elseif data.current.value == 'buy_license_shotgun' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseShotgun')
+			IsInMainMenu = false
+			menu.close()
+		elseif data.current.value == 'buy_license_assault' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseAssault')
+			IsInMainMenu = false
+			menu.close()
+		elseif data.current.value == 'buy_license_lmg' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseLMG')
+			IsInMainMenu = false
+			menu.close()
+		elseif data.current.value == 'buy_license_sniper' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseSniper')
+			IsInMainMenu = false
+			menu.close()
 		elseif data.current.value == 'buy_license_commercial' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseCommercial')
 			IsInMainMenu = false
@@ -97,16 +235,20 @@ function OpenLicenseShop()
 			TriggerServerEvent('esx_licenseshop:buyLicenseDrivers')
 			IsInMainMenu = false
 			menu.close()
+		elseif data.current.value == 'buy_license_driversp' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseDriversP')
+			IsInMainMenu = false
+			menu.close()
 		elseif data.current.value == 'buy_license_motorcycle' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseMotorcyle')
 			IsInMainMenu = false
 			menu.close()
-		elseif data.current.value == 'buy_license_weapon' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseWeapon')
-			IsInMainMenu = false
-			menu.close()
 		elseif data.current.value == 'buy_license_weed' then
 			TriggerServerEvent('esx_licenseshop:buyLicenseWeed')
+			IsInMainMenu = false
+			menu.close()
+		elseif data.current.value == 'buy_license_weapon' then
+			TriggerServerEvent('esx_licenseshop:buyLicenseWeapon')
 			IsInMainMenu = false
 			menu.close()
 		end

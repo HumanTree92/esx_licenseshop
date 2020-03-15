@@ -3,15 +3,18 @@ License Shop based on ESX Servers
 
 This is just a simple Code that i put together to sell licenses next to the DMV School. You must have a Drivers Permit in order to buy licenses.
 
-Current Licenses: Drivers License, Motorcycles License, Commercial License, Aircraft License, Boat License, Weapons License, & Weed License.
+This currently is setup for: esx_advancedvehicleshop, esx_advancedweaponshop, esx_dmvschool, esx_drugs, esx_vehicleshop, & esx_weaponshop.
 
 # Requirements:
 * Required:
-  * [esx_dmvschool](https://github.com/ESX-Org/esx_dmvschool)
-  * [esx_drugs](https://github.com/ESX-Org/esx_drugs)
-  * [esx_weaponshop](https://github.com/ESX-Org/esx_weaponshop)
+  * [es_extended](https://github.com/ESX-Org/es_extended)
 * Optional:
   * [esx_advancedvehicleshop](https://github.com/HumanTree92/esx_advancedvehicleshop)
+  * [esx_advancedweaponshop](https://github.com/HumanTree92/esx_advancedweaponshop)
+  * [esx_dmvschool](https://github.com/ESX-Org/esx_dmvschool)
+  * [esx_drugs](https://github.com/ESX-Org/esx_drugs)
+  * [esx_vehicleshop](https://github.com/ESX-Org/esx_vehicleshop)
+  * [esx_weaponshop](https://github.com/ESX-Org/esx_weaponshop)
 
 # Download & Installation:
 1) Download the .zip.
@@ -27,6 +30,8 @@ If you like this please check out some of my other stuff like
 * [esx_advancedgarage](https://github.com/HumanTree92/esx_advancedgarage)
 * [esx_advancedvehicleshop](https://github.com/HumanTree92/esx_advancedvehicleshop)
 * [esx_advancedhospital](https://github.com/HumanTree92/esx_advancedhospital)
+* [esx_advancedweaponshop](https://github.com/HumanTree92/esx_advancedweaponshop)
+* [esx_advancedfuel](https://github.com/HumanTree92/esx_advancedfuel)
 * [esx_extraitems](https://github.com/HumanTree92/esx_extraitems)
 * [esx_licenseshop](https://github.com/HumanTree92/esx_licenseshop)
 * [esx_vehiclespawner](https://github.com/HumanTree92/esx_vehiclespawner)
