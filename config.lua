@@ -38,5 +38,9 @@ Config.Zones = {
 	LicenseShop1 = { -- Next to esx_dmvschool
 		Pos = vector3(241.0, -1378.9, 32.7),
 		Heading = 148.29
+	},
+	LicenseShop2 = { -- In LSPD Lobby
+		Pos = vector3(448.6, -988.75, 29.69),
+		Heading = 25.05
 	}
 }

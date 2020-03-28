@@ -264,11 +264,11 @@ end
 
 -- Entered Marker
 AddEventHandler('esx_licenseshop:hasEnteredMarker', function(zone)
-	if zone == 'LicenseShop1' then
+	--if zone == 'LicenseShop' then
 		CurrentAction     = 'license_menu'
 		CurrentActionMsg  = _U('press_access')
 		CurrentActionData = {}
-	end
+	--end
 end)
 
 -- Exited Marker
