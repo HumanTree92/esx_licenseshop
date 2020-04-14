@@ -188,7 +188,7 @@ function OpenLicenseShop()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'license_shop_actions', {
 		title    = _U('buy_license'),
-		align    = 'top-left',
+		align    = Config.MenuAlign,
 		elements = elements
 	}, function(data, menu)
 		if data.current.value == 'buy_license_aircraft' then

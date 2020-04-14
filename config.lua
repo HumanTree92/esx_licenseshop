@@ -1,7 +1,9 @@
 Config = {}
 Config.Locale = 'en'
 
+Config.MenuAlign = 'top-left'
 Config.DrawDistance = 100
+
 Config.MarkerInfo = {Type = 1, r = 102, g = 102, b = 204, x = 2.0, y = 2.0, z = 1.0}
 Config.BlipLicenseShop = {Sprite = 408, Color = 0, Display = 2, Scale = 1.0}
 
