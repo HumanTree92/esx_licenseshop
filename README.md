@@ -1,7 +1,5 @@
 # About esx_licenseshop:
-License Shop for ESX
-
-This is just a simple Code that i put together to sell licenses next to the DMV School. You must have a Drivers Permit in order to buy licenses.
+License Shop for ESX - Made by Human Tree92 ([Velociti Entertainment Customs & Wiki](http://www.velocitientertainment.com/customs/))
 
 # Helpfull Info:
 * This currently is setup for: esx_advancedvehicleshop, esx_advancedweaponshop, esx_dmvschool, esx_drugs, esx_vehicleshop, & esx_weaponshop.
@@ -28,12 +26,16 @@ This is just a simple Code that i put together to sell licenses next to the DMV 
 
 # Other Scripts:
 If you like this please check out some of my other stuff like
-* [esx_advancedgarage](https://github.com/HumanTree92/esx_advancedgarage)
-* [esx_advancedvehicleshop](https://github.com/HumanTree92/esx_advancedvehicleshop)
-* [esx_advancedhospital](https://github.com/HumanTree92/esx_advancedhospital)
-* [esx_advancedweaponshop](https://github.com/HumanTree92/esx_advancedweaponshop)
+* [esx_advancedbanking](https://github.com/HumanTree92/esx_advancedbanking)
 * [esx_advancedfuel](https://github.com/HumanTree92/esx_advancedfuel)
+* [esx_advancedgarage](https://github.com/HumanTree92/esx_advancedgarage)
+* [esx_advancedholdup](https://github.com/HumanTree92/esx_advancedholdup)
+* [esx_advancedhospital](https://github.com/HumanTree92/esx_advancedhospital)
+* [esx_advancedjail](https://github.com/HumanTree92/esx_advancedjail)
+* [esx_advancedvehicleshop](https://github.com/HumanTree92/esx_advancedvehicleshop)
+* [esx_advancedweaponshop](https://github.com/HumanTree92/esx_advancedweaponshop)
 * [esx_extraitems](https://github.com/HumanTree92/esx_extraitems)
+* [esx_joblisting](https://github.com/HumanTree92/esx_joblisting)
 * [esx_licenseshop](https://github.com/HumanTree92/esx_licenseshop)
 * [esx_vehiclespawner](https://github.com/HumanTree92/esx_vehiclespawner)
 * [FiveM_CustomMapAddons](https://github.com/HumanTree92/FiveM_CustomMapAddons)

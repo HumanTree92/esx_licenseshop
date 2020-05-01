@@ -7,6 +7,7 @@ Config.DrawDistance = 100
 Config.MarkerInfo = {Type = 1, r = 102, g = 102, b = 204, x = 2.0, y = 2.0, z = 1.0}
 Config.BlipLicenseShop = {Sprite = 408, Color = 0, Display = 2, Scale = 1.0}
 
+Config.UseBlips = false -- true = Use License Shop Blips
 Config.EnablePeds = true -- If true then it will add Peds on Markers | false does the Opposite.
 Config.RequireDMV = false -- If true then it will require players to have Drivers Permit to buy other Licenses | false does the Opposite.
 

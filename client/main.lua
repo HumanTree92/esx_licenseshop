@@ -187,8 +187,8 @@ function OpenLicenseShop()
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'license_shop_actions', {
-		title    = _U('buy_license'),
-		align    = Config.MenuAlign,
+		title = _U('buy_license'),
+		align = Config.MenuAlign,
 		elements = elements
 	}, function(data, menu)
 		if data.current.value == 'buy_license_aircraft' then
@@ -256,8 +256,8 @@ function OpenLicenseShop()
 		IsInMainMenu = false
 		menu.close()
 
-		CurrentAction     = 'license_menu'
-		CurrentActionMsg  = _U('press_access')
+		CurrentAction = 'license_menu'
+		CurrentActionMsg = _U('press_access')
 		CurrentActionData = {}
 	end)
 end
@@ -265,8 +265,8 @@ end
 -- Entered Marker
 AddEventHandler('esx_licenseshop:hasEnteredMarker', function(zone)
 	--if zone == 'LicenseShop' then
-		CurrentAction     = 'license_menu'
-		CurrentActionMsg  = _U('press_access')
+		CurrentAction = 'license_menu'
+		CurrentActionMsg = _U('press_access')
 		CurrentActionData = {}
 	--end
 end)
@@ -291,18 +291,20 @@ end)
 
 -- Blips
 Citizen.CreateThread(function()
-	for k,v in pairs(Config.Zones) do
-		local blip = AddBlipForCoord(v.Pos)
+	if Config.UseBlips then
+		for k,v in pairs(Config.Zones) do
+			local blip = AddBlipForCoord(v.Pos)
 
-		SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
-		SetBlipColour (blip, Config.BlipLicenseShop.Color)
-		SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
-		SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
-		SetBlipAsShortRange(blip, true)
+			SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
+			SetBlipColour (blip, Config.BlipLicenseShop.Color)
+			SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
+			SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
+			SetBlipAsShortRange(blip, true)
 
-		BeginTextCommandSetBlipName('STRING')
-		AddTextComponentSubstringPlayerName(_U('blip_license_shop'))
-		EndTextCommandSetBlipName(blip)
+			BeginTextCommandSetBlipName('STRING')
+			AddTextComponentSubstringPlayerName(_U('blip_license_shop'))
+			EndTextCommandSetBlipName(blip)
+		end
 	end
 end)
 
