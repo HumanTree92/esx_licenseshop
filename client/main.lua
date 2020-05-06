@@ -264,11 +264,9 @@ end
 
 -- Entered Marker
 AddEventHandler('esx_licenseshop:hasEnteredMarker', function(zone)
-	--if zone == 'LicenseShop' then
-		CurrentAction = 'license_menu'
-		CurrentActionMsg = _U('press_access')
-		CurrentActionData = {}
-	--end
+	CurrentAction = 'license_menu'
+	CurrentActionMsg = _U('press_access')
+	CurrentActionData = {}
 end)
 
 -- Exited Marker
@@ -293,37 +291,19 @@ end)
 Citizen.CreateThread(function()
 	if Config.UseBlips then
 		for k,v in pairs(Config.Zones) do
-			local blip = AddBlipForCoord(v.Pos)
+			for i=1, #v.Coords, 1 do
+				local blip = AddBlipForCoord(v.Coords[i])
 
-			SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
-			SetBlipColour (blip, Config.BlipLicenseShop.Color)
-			SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
-			SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
-			SetBlipAsShortRange(blip, true)
+				SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
+				SetBlipColour (blip, Config.BlipLicenseShop.Color)
+				SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
+				SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
+				SetBlipAsShortRange(blip, true)
 
-			BeginTextCommandSetBlipName('STRING')
-			AddTextComponentSubstringPlayerName(_U('blip_license_shop'))
-			EndTextCommandSetBlipName(blip)
-		end
-	end
-end)
-
--- Create Ped
-Citizen.CreateThread(function()
-    if Config.EnablePeds then
-		RequestModel(GetHashKey("a_m_y_business_03"))
-
-		while not HasModelLoaded(GetHashKey("a_m_y_business_03")) do
-			Wait(1)
-		end
-
-		for k,v in pairs(Config.Zones) do
-			local npc = CreatePed(4, 0xA1435105, v.Pos, v.Heading, false, true)
-
-			SetEntityHeading(npc, v.Heading)
-			FreezeEntityPosition(npc, true)
-			SetEntityInvincible(npc, true)
-			SetBlockingOfNonTemporaryEvents(npc, true)
+				BeginTextCommandSetBlipName('STRING')
+				AddTextComponentSubstringPlayerName(_U('blip_license_shop'))
+				EndTextCommandSetBlipName(blip)
+			end
 		end
 	end
 end)
@@ -336,17 +316,19 @@ Citizen.CreateThread(function()
 		local isInMarker, letSleep, currentZone = false, true
 
 		for k,v in pairs(Config.Zones) do
-			local distance = #(playerCoords - v.Pos)
+			for i=1, #v.Coords, 1 do
+				local distance = #(playerCoords - v.Coords[i])
 
-			if distance < Config.DrawDistance then
-				letSleep = false
+				if distance < Config.DrawDistance then
+					letSleep = false
 
-				if Config.MarkerInfo.Type ~= -1 then
-					DrawMarker(Config.MarkerInfo.Type, v.Pos, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.MarkerInfo.x, Config.MarkerInfo.y, Config.MarkerInfo.z, Config.MarkerInfo.r, Config.MarkerInfo.g, Config.MarkerInfo.b, 100, false, true, 2, false, nil, nil, false)
-				end
+					if Config.MarkerInfo.Type ~= -1 then
+						DrawMarker(Config.MarkerInfo.Type, v.Coords[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.MarkerInfo.x, Config.MarkerInfo.y, Config.MarkerInfo.z, Config.MarkerInfo.r, Config.MarkerInfo.g, Config.MarkerInfo.b, 100, false, true, 2, false, nil, nil, false)
+					end
 
-				if distance < Config.MarkerInfo.x then
-					isInMarker, currentZone = true, k
+					if distance < Config.MarkerInfo.x then
+						isInMarker, currentZone = true, k
+					end
 				end
 			end
 		end

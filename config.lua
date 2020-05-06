@@ -8,7 +8,6 @@ Config.MarkerInfo = {Type = 1, r = 102, g = 102, b = 204, x = 2.0, y = 2.0, z = 
 Config.BlipLicenseShop = {Sprite = 408, Color = 0, Display = 2, Scale = 1.0}
 
 Config.UseBlips = false -- true = Use License Shop Blips
-Config.EnablePeds = true -- If true then it will add Peds on Markers | false does the Opposite.
 Config.RequireDMV = false -- If true then it will require players to have Drivers Permit to buy other Licenses | false does the Opposite.
 
 Config.AdvancedVehicleShop = false -- Set to True if using esx_advancedvehicleshop
@@ -38,12 +37,10 @@ Config.WeaponShop = false -- Set to true if using esx_weaponshop
 Config.LicenseWeapon = 1000
 
 Config.Zones = {
-	LicenseShop1 = { -- Next to esx_dmvschool
-		Pos = vector3(241.0, -1378.9, 32.7),
-		Heading = 148.29
-	},
-	LicenseShop2 = { -- In LSPD Lobby
-		Pos = vector3(448.6, -988.75, 29.69),
-		Heading = 25.05
+	LicenseShops = {
+		Coords = {
+			vector3(241.0, -1378.9, 32.7)
+			vector3(438.68, -980.16, 29.69)
+		}
 	}
 }
