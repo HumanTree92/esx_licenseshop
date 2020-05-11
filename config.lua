@@ -39,7 +39,7 @@ Config.LicenseWeapon = 1000
 Config.Zones = {
 	LicenseShops = {
 		Coords = {
-			vector3(241.0, -1378.9, 32.7)
+			vector3(241.0, -1378.9, 32.7),
 			vector3(438.68, -980.16, 29.69)
 		}
 	}
