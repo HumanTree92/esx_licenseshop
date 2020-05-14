@@ -271,7 +271,7 @@ end)
 
 -- Exited Marker
 AddEventHandler('esx_licenseshop:hasExitedMarker', function(zone)
-	if not IsInMainMenu then
+	if not IsInMainMenu or IsInMainMenu then
 		ESX.UI.Menu.CloseAll()
 	end
 
