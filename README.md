@@ -1,12 +1,14 @@
 # About esx_licenseshop:
 License Shop for ESX - Made by Human Tree92 ([Velociti Entertainment Customs & Wiki](http://www.velocitientertainment.com/customs/))
 
+I can not Guarantee that this will work with the Latest es_extended V2.
+
 # Helpfull Info:
 * This currently is setup for: esx_advancedvehicleshop, esx_advancedweaponshop, esx_dmvschool, esx_drugs, esx_vehicleshop, & esx_weaponshop.
 
 # Requirements:
 * Required:
-  * [es_extended](https://github.com/ESX-Org/es_extended)
+  * [es_extended V1 Final](https://github.com/ESX-Org/es_extended) or [extendedmode](https://github.com/extendedmode/extendedmode)
 * Optional:
   * [esx_advancedvehicleshop](https://github.com/HumanTree92/esx_advancedvehicleshop)
   * [esx_advancedweaponshop](https://github.com/HumanTree92/esx_advancedweaponshop)
