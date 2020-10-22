@@ -21,10 +21,10 @@ License Shop for ESX V1 Final or EXM - Made by Human Tree92 ([Velociti Entertain
   * [esx_weaponshop](https://github.com/ESX-Org/esx_weaponshop)
 
 # Download & Installation:
-1) Download the .zip.
-2) Extract the .zip or Open the .zip.
-3) Place `esx_licenseshop` in your ESX Directory
-4) Add `start esx_licenseshop` to your server.cfg
+1) Download Master or Release & Extract the .zip or Open the .zip.
+2) Place `esx_licenseshop` in your ESX Directory
+3) Add `start esx_licenseshop` to your server.cfg
+4) Add `setr esx_MenuAlign "top-right"` to your server.cfg
 
 # Known Bugs:
 * If a new player gets their DMV License you will have to restart the License Shop or have the Player Re-Log. This can be fixed easily by adding a Resource Restarter to the esx_dmvschool when a player passes their Test. (This will not be added as this is a messy way of handling it.)

@@ -1,7 +1,6 @@
 Config = {}
 Config.Locale = 'en'
 
-Config.MenuAlign = 'top-left'
 Config.DrawDistance = 10
 
 Config.MarkerInfo = {Type = 1, r = 102, g = 102, b = 204, x = 2.0, y = 2.0, z = 1.0}
