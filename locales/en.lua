@@ -4,6 +4,7 @@ Locales['en'] = {
   ['not_enough_money'] = 'you do not have enough money',
   ['blip_license_shop'] = 'License Shop',
   ['need_dmv'] = 'You must have a Drivers Permit',
+  ['shop_menu_item'] = '$%s',
   -- esx_advancedvehicleshop Licenses
   ['license_aircraft'] = 'Aircraft License',
   ['license_boating'] = 'Boating License',

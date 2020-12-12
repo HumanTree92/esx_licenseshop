@@ -25,9 +25,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseAircraft')
 AddEventHandler('esx_licenseshop:buyLicenseAircraft', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Aircraft
 
-	if xPlayer.getMoney() >= Config.LicenseAircraft then
-		xPlayer.removeMoney(Config.LicenseAircraft)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'aircraft', function()
 			LoadLicenses(_source)
@@ -42,9 +43,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseBoating')
 AddEventHandler('esx_licenseshop:buyLicenseBoating', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Boating
 
-	if xPlayer.getMoney() >= Config.LicenseBoating then
-		xPlayer.removeMoney(Config.LicenseBoating)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'boating', function()
 			LoadLicenses(_source)
@@ -59,9 +61,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseMelee')
 AddEventHandler('esx_licenseshop:buyLicenseMelee', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Melee
 
-	if xPlayer.getMoney() >= Config.LicenseMelee then
-		xPlayer.removeMoney(Config.LicenseMelee)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon_melee', function()
 			LoadLicenses(_source)
@@ -76,9 +79,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseHandgun')
 AddEventHandler('esx_licenseshop:buyLicenseHandgun', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Handgun
 
-	if xPlayer.getMoney() >= Config.LicenseHandgun then
-		xPlayer.removeMoney(Config.LicenseHandgun)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon_handgun', function()
 			LoadLicenses(_source)
@@ -93,9 +97,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseSMG')
 AddEventHandler('esx_licenseshop:buyLicenseSMG', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.SMG
 
-	if xPlayer.getMoney() >= Config.LicenseSMG then
-		xPlayer.removeMoney(Config.LicenseSMG)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon_smg', function()
 			LoadLicenses(_source)
@@ -110,9 +115,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseShotgun')
 AddEventHandler('esx_licenseshop:buyLicenseShotgun', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Shotgun
 
-	if xPlayer.getMoney() >= Config.LicenseShotgun then
-		xPlayer.removeMoney(Config.LicenseShotgun)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon_shotgun', function()
 			LoadLicenses(_source)
@@ -127,9 +133,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseAssault')
 AddEventHandler('esx_licenseshop:buyLicenseAssault', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Assault
 
-	if xPlayer.getMoney() >= Config.LicenseAssault then
-		xPlayer.removeMoney(Config.LicenseAssault)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon_assault', function()
 			LoadLicenses(_source)
@@ -144,9 +151,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseLMG')
 AddEventHandler('esx_licenseshop:buyLicenseLMG', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.LMG
 
-	if xPlayer.getMoney() >= Config.LicenseLMG then
-		xPlayer.removeMoney(Config.LicenseLMG)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon_lmg', function()
 			LoadLicenses(_source)
@@ -161,9 +169,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseSniper')
 AddEventHandler('esx_licenseshop:buyLicenseSniper', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Sniper
 
-	if xPlayer.getMoney() >= Config.LicenseSniper then
-		xPlayer.removeMoney(Config.LicenseSniper)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon_sniper', function()
 			LoadLicenses(_source)
@@ -178,9 +187,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseCommercial')
 AddEventHandler('esx_licenseshop:buyLicenseCommercial', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Commercial
 
-	if xPlayer.getMoney() >= Config.LicenseCommercial then
-		xPlayer.removeMoney(Config.LicenseCommercial)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'drive_truck', function()
 			LoadLicenses(_source)
@@ -195,9 +205,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseDrivers')
 AddEventHandler('esx_licenseshop:buyLicenseDrivers', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Drivers
 
-	if xPlayer.getMoney() >= Config.LicenseDrivers then
-		xPlayer.removeMoney(Config.LicenseDrivers)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'drive', function()
 			LoadLicenses(_source)
@@ -212,9 +223,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseDriversP')
 AddEventHandler('esx_licenseshop:buyLicenseDriversP', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.DriversP
 
-	if xPlayer.getMoney() >= Config.LicenseDriversP then
-		xPlayer.removeMoney(Config.LicenseDriversP)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'dmv', function()
 			LoadLicenses(_source)
@@ -229,9 +241,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseMotorcyle')
 AddEventHandler('esx_licenseshop:buyLicenseMotorcyle', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Motorcycle
 
-	if xPlayer.getMoney() >= Config.LicenseMotocycle then
-		xPlayer.removeMoney(Config.LicenseMotocycle)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'drive_bike', function()
 			LoadLicenses(_source)
@@ -246,9 +259,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseWeed')
 AddEventHandler('esx_licenseshop:buyLicenseWeed', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Weed
 
-	if xPlayer.getMoney() >= Config.LicenseWeed then
-		xPlayer.removeMoney(Config.LicenseWeed)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weed_processing', function()
 			LoadLicenses(_source)
@@ -263,9 +277,10 @@ RegisterServerEvent('esx_licenseshop:buyLicenseWeapon')
 AddEventHandler('esx_licenseshop:buyLicenseWeapon', function()
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
+	local price = Config.Prices.Weapon
 
-	if xPlayer.getMoney() >= Config.LicenseWeapon then
-		xPlayer.removeMoney(Config.LicenseWeapon)
+	if xPlayer.getMoney() >= price then
+		xPlayer.removeMoney(price)
 
 		TriggerEvent('esx_license:addLicense', _source, 'weapon', function()
 			LoadLicenses(_source)
