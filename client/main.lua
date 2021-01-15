@@ -44,69 +44,69 @@ function OpenLicenseShop()
 		end
 
 		if not ownedLicenses['boating'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Boating))), value = 'buy_license_boating'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_boating'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Boating))), value = 'buy_license_boating'})
 		end
 	end
 
 	if Config.AdvancedWeaponShop then
 		if not ownedLicenses['weapon_melee'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Melee))), value = 'buy_license_melee'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_melee'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Melee))), value = 'buy_license_melee'})
 		end
 
 		if not ownedLicenses['weapon_handgun'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Handgun))), value = 'buy_license_handgun'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_handgun'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Handgun))), value = 'buy_license_handgun'})
 		end
 
 		if not ownedLicenses['weapon_smg'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.SMG))), value = 'buy_license_smg'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_smg'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.SMG))), value = 'buy_license_smg'})
 		end
 
 		if not ownedLicenses['weapon_shotgun'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Shotgun))), value = 'buy_license_shotgun'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_shotgun'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Shotgun))), value = 'buy_license_shotgun'})
 		end
 
 		if not ownedLicenses['weapon_assault'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Assault))), value = 'buy_license_assault'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_assault'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Assault))), value = 'buy_license_assault'})
 		end
 
 		if not ownedLicenses['weapon_lmg'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.LMG))), value = 'buy_license_lmg'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_lmg'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.LMG))), value = 'buy_license_lmg'})
 		end
 
 		if not ownedLicenses['weapon_sniper'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Sniper))), value = 'buy_license_sniper'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_sniper'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Sniper))), value = 'buy_license_sniper'})
 		end
 	end
 
 	if Config.DMVSchool then
 		if Config.SellDMV then
 			if not ownedLicenses['dmv'] then
-				table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.DriversP))), value = 'buy_license_driversp'})
+				table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_driversp'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.DriversP))), value = 'buy_license_driversp'})
 			end
 		end
 
 		if not ownedLicenses['drive_truck'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Commercial))), value = 'buy_license_commercial'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_commercial'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Commercial))), value = 'buy_license_commercial'})
 		end
 
 		if not ownedLicenses['drive'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Drivers))), value = 'buy_license_drivers'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_drivers'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Drivers))), value = 'buy_license_drivers'})
 		end
 
 		if not ownedLicenses['drive_bike'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Motorcycle))), value = 'buy_license_motorcycle'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_motorcycle'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Motorcycle))), value = 'buy_license_motorcycle'})
 		end
 	end
 
 	if Config.Drugs then
 		if not ownedLicenses['weed_processing'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Weed))), value = 'buy_license_weed'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_weed'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Weed))), value = 'buy_license_weed'})
 		end
 	end
 
 	if Config.WeaponShop then
 		if not ownedLicenses['weapon'] then
-			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_aircraft'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Weapon))), value = 'buy_license_weapon'})
+			table.insert(elements, {label = ('%s - <span style="color: green;">%s</span>'):format(_U('license_weapon'), _U('shop_menu_item', ESX.Math.GroupDigits(Config.Prices.Weapon))), value = 'buy_license_weapon'})
 		end
 	end
 
