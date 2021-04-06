@@ -1,6 +1,8 @@
 Locales['en'] = {
+  ['dmv_school'] = 'Open DMV Testing',
   ['buy_license'] = 'Buy a License?',
-  ['press_access'] = 'press ~INPUT_CONTEXT~ to access License Shop',
+  ['where_to_go'] = 'Pick where to Go',
+  ['press_access'] = 'press ~INPUT_CONTEXT~ to access Licensing Menu',
   ['not_enough_money'] = 'you do not have enough money',
   ['blip_license_shop'] = 'License Shop',
   ['need_dmv'] = 'You must have a Drivers Permit',

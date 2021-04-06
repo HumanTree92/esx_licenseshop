@@ -27,6 +27,45 @@ AddEventHandler('esx_licenseshop:loadLicenses', function(licenses)
 	Licenses = licenses
 end)
 
+-- Open Main Menu
+function OpenMainMenu()
+	IsInMainMenu = true
+	ESX.UI.Menu.CloseAll()
+	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'license_shop_actions', {
+		title = _U('where_to_go'),
+		align = GetConvar('esx_MenuAlign', 'top-left'),
+		elements = {
+			--{label = _U('dmv_school'), value = 'dmv_school'},
+			{label = _U('buy_license'), value = 'buy_license'}
+	}}, function(data, menu)
+		if data.current.value == 'dmv_school' then
+			exports['esx_dmvschool']:openESXDMV()
+		elseif data.current.value == 'buy_license' then
+			TriggerServerEvent('esx_licenseshop:ServerLoadLicenses')
+			if Config.RequireDMV then
+				local ownedLicenses = {}
+				for i=1, #Licenses, 1 do
+					ownedLicenses[Licenses[i].type] = true
+				end
+				
+				if not ownedLicenses['dmv'] then
+					ESX.ShowNotification(_U('need_dmv'))
+				else
+					OpenLicenseShop()
+				end
+			else
+				OpenLicenseShop()
+			end
+		end
+	end, function(data, menu)
+		IsInMainMenu = false
+		menu.close()
+		CurrentAction = 'license_menu'
+		CurrentActionMsg = _U('press_access')
+		CurrentActionData = {}
+	end)
+end
+
 -- Open License Shop
 function OpenLicenseShop()
 	IsInMainMenu = true
@@ -180,9 +219,7 @@ function OpenLicenseShop()
 	end, function(data, menu)
 		IsInMainMenu = false
 		menu.close()
-
 		CurrentAction = 'license_menu'
-		CurrentActionMsg = _U('press_access')
 		CurrentActionData = {}
 	end)
 end
@@ -284,21 +321,7 @@ Citizen.CreateThread(function()
 
 			if IsControlJustReleased(0, 38) then
 				if CurrentAction == 'license_menu' then
-					TriggerServerEvent('esx_licenseshop:ServerLoadLicenses')
-					if Config.RequireDMV then
-						local ownedLicenses = {}
-						for i=1, #Licenses, 1 do
-							ownedLicenses[Licenses[i].type] = true
-						end
-						
-						if not ownedLicenses['dmv'] then
-							ESX.ShowNotification(_U('need_dmv'))
-						else
-							OpenLicenseShop()
-						end
-					else
-						OpenLicenseShop()
-					end
+					OpenMainMenu()
 				end
 
 				CurrentAction = nil
@@ -308,3 +331,21 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
+
+function openESXLicenseShop()
+	TriggerServerEvent('esx_licenseshop:ServerLoadLicenses')
+	if Config.RequireDMV then
+		local ownedLicenses = {}
+		for i=1, #Licenses, 1 do
+			ownedLicenses[Licenses[i].type] = true
+		end
+		
+		if not ownedLicenses['dmv'] then
+			ESX.ShowNotification(_U('need_dmv'))
+		else
+			OpenLicenseShop()
+		end
+	else
+		OpenLicenseShop()
+	end
+end
