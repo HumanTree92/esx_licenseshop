@@ -155,67 +155,9 @@ function OpenLicenseShop()
 		align = GetConvar('esx_MenuAlign', 'top-left'),
 		elements = elements
 	}, function(data, menu)
-		if data.current.value == 'buy_license_aircraft' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseAircraft')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_boating' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseBoating')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_melee' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseMelee')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_handgun' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseHandgun')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_smg' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseSMG')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_shotgun' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseShotgun')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_assault' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseAssault')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_lmg' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseLMG')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_sniper' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseSniper')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_commercial' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseCommercial')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_drivers' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseDrivers')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_driversp' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseDriversP')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_motorcycle' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseMotorcyle')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_weed' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseWeed')
-			IsInMainMenu = false
-			menu.close()
-		elseif data.current.value == 'buy_license_weapon' then
-			TriggerServerEvent('esx_licenseshop:buyLicenseWeapon')
-			IsInMainMenu = false
-			menu.close()
-		end
+		TriggerServerEvent('esx_licenseshop:buyLicense', data.current.value)
+		IsInMainMenu = false
+		menu.close()
 	end, function(data, menu)
 		IsInMainMenu = false
 		menu.close()
@@ -256,10 +198,10 @@ Citizen.CreateThread(function()
 			for i=1, #v.Coords, 1 do
 				local blip = AddBlipForCoord(v.Coords[i])
 
-				SetBlipSprite (blip, Config.BlipLicenseShop.Sprite)
-				SetBlipColour (blip, Config.BlipLicenseShop.Color)
-				SetBlipDisplay(blip, Config.BlipLicenseShop.Display)
-				SetBlipScale  (blip, Config.BlipLicenseShop.Scale)
+				SetBlipSprite(blip, Config.Blip.Sprite)
+				SetBlipColour(blip, Config.Blip.Color)
+				SetBlipDisplay(blip, Config.Blip.Display)
+				SetBlipScale(blip, Config.Blip.Scale)
 				SetBlipAsShortRange(blip, true)
 
 				BeginTextCommandSetBlipName('STRING')

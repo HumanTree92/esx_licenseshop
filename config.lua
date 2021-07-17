@@ -4,7 +4,7 @@ Config.Locale = 'en'
 Config.DrawDistance = 10
 
 Config.MarkerInfo = {Type = 1, r = 102, g = 102, b = 204, x = 2.0, y = 2.0, z = 1.0}
-Config.BlipLicenseShop = {Sprite = 408, Color = 0, Display = 2, Scale = 1.0}
+Config.Blip = {Sprite = 408, Color = 0, Display = 2, Scale = 1.0}
 
 Config.UseBlips = false -- true = Use License Shop Blips
 Config.RequireDMV = false -- If true then it will require players to have Drivers Permit to buy other Licenses | false does the Opposite.
@@ -36,8 +36,7 @@ Config.Prices = {
 Config.Zones = {
 	LicenseShops = {
 		Coords = {
-			vector3(241.0, -1378.9, 32.7),
-			vector3(438.68, -980.16, 29.69)
+			vector3(241.0, -1378.9, 32.7)
 		}
 	}
 }
