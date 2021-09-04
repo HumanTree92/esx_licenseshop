@@ -1,7 +1,3 @@
-ESX = nil
-
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-
 AddEventHandler('esx:playerLoaded', function(source)
 	TriggerEvent('esx_license:getLicenses', source, function(licenses)
 		TriggerClientEvent('esx_licenseshop:loadLicenses', source, licenses)
