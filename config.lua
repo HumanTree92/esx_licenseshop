@@ -33,10 +33,6 @@ Config.Prices = {
 	Weapon = 1000
 }
 
-Config.Zones = {
-	LicenseShops = {
-		Coords = {
-			vector3(241.0, -1378.9, 32.7)
-		}
-	}
+Config.Locs = {
+	vector3(241.0, -1378.9, 32.7)
 }

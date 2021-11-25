@@ -179,20 +179,18 @@ end)
 -- Blips
 Citizen.CreateThread(function()
 	if Config.UseBlips then
-		for k,v in pairs(Config.Zones) do
-			for i=1, #v.Coords, 1 do
-				local blip = AddBlipForCoord(v.Coords[i])
+		for k,v in ipairs(Config.Locs) do
+			local blip = AddBlipForCoord(v)
 
-				SetBlipSprite(blip, Config.Blip.Sprite)
-				SetBlipColour(blip, Config.Blip.Color)
-				SetBlipDisplay(blip, Config.Blip.Display)
-				SetBlipScale(blip, Config.Blip.Scale)
-				SetBlipAsShortRange(blip, true)
+			SetBlipSprite(blip, Config.Blip.Sprite)
+			SetBlipColour(blip, Config.Blip.Color)
+			SetBlipDisplay(blip, Config.Blip.Display)
+			SetBlipScale(blip, Config.Blip.Scale)
+			SetBlipAsShortRange(blip, true)
 
-				BeginTextCommandSetBlipName('STRING')
-				AddTextComponentSubstringPlayerName(_U('blip_license_shop'))
-				EndTextCommandSetBlipName(blip)
-			end
+			BeginTextCommandSetBlipName('STRING')
+			AddTextComponentSubstringPlayerName(_U('blip_license_shop'))
+			EndTextCommandSetBlipName(blip)
 		end
 	end
 end)
@@ -204,20 +202,18 @@ Citizen.CreateThread(function()
 		local playerCoords = GetEntityCoords(PlayerPedId())
 		local isInMarker, letSleep, currentZone = false, true
 
-		for k,v in pairs(Config.Zones) do
-			for i=1, #v.Coords, 1 do
-				local distance = #(playerCoords - v.Coords[i])
+		for k,v in ipairs(Config.Locs) do
+			local distance = #(playerCoords - v)
 
-				if distance < Config.DrawDistance then
-					letSleep = false
+			if distance < Config.DrawDistance then
+				letSleep = false
 
-					if Config.MarkerInfo.Type ~= -1 then
-						DrawMarker(Config.MarkerInfo.Type, v.Coords[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.MarkerInfo.x, Config.MarkerInfo.y, Config.MarkerInfo.z, Config.MarkerInfo.r, Config.MarkerInfo.g, Config.MarkerInfo.b, 100, false, true, 2, false, nil, nil, false)
-					end
+				if Config.MarkerInfo.Type ~= -1 then
+					DrawMarker(Config.MarkerInfo.Type, v, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.MarkerInfo.x, Config.MarkerInfo.y, Config.MarkerInfo.z, Config.MarkerInfo.r, Config.MarkerInfo.g, Config.MarkerInfo.b, 100, false, true, 2, false, nil, nil, false)
+				end
 
-					if distance < Config.MarkerInfo.x then
-						isInMarker, currentZone = true, k
-					end
+				if distance < Config.MarkerInfo.x then
+					isInMarker, currentZone = true, k
 				end
 			end
 		end
